@@ -4,6 +4,7 @@ import "draft-js/dist/Draft.css";
 import "./editors.scss";
 import { FiEdit } from "react-icons/fi";
 import Buttons from "./buttons/Buttons.js";
+import Toolbar from "./Toolbar.js";
 
 export default function FbEditor() {
   const [editorState, setEditorState] = useState(() =>
@@ -11,6 +12,7 @@ export default function FbEditor() {
   );
   const [isEditor, setEditor] = useState(false);
 
+  const updateEditorState = editorState => setEditorState(editorState);
   const handleEditArea = () => setEditor(true);
   const handleCancel = () => {
     console.log("discard changes");
@@ -27,10 +29,17 @@ export default function FbEditor() {
         className={`edit-icon ${isEditor ? "active" : ""}`}
         onClick={handleEditArea}
       />
+      {isEditor && (
+        <Toolbar
+          editorState={editorState}
+          updateEditorState={updateEditorState}
+          isEditor={isEditor}
+        />
+      )}
       <div className={`editor-area ${isEditor ? "" : "disabled"}`}>
         <Editor
           editorState={editorState}
-          onChange={setEditorState}
+          onChange={updateEditorState}
           placeholder="Write your content here ..."
         />
       </div>
