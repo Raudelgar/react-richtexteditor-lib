@@ -10,7 +10,8 @@ export default function Toolbar({ editorState, updateEditorState, isEditor }) {
   };
 
   const isActive = style => {
-    return editorState.getCurrentInlineStyle().has(style);
+    const draftStyle = editorState.getCurrentInlineStyle();
+    return draftStyle.has(style);
   };
 
   return (

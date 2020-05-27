@@ -33,7 +33,6 @@ export default function FbEditor() {
         <Toolbar
           editorState={editorState}
           updateEditorState={updateEditorState}
-          isEditor={isEditor}
         />
       )}
       <div className={`editor-area ${isEditor ? "" : "disabled"}`}>
